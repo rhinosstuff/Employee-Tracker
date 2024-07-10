@@ -1,14 +1,19 @@
-INSERT INTO customers ( first_name, last_name)
-VALUES ('Arthur', 'Miller'),
-       ('Chinua', 'Achebe'),
-       ('Margaret', 'Atwood'),
-       ('Gabriel', 'Garcia Marquez'),
-       ('Simone', 'de Beauvoir');
-       
-INSERT INTO customer_orders (customer_id, order_details)
-VALUES (001, 'coffee, milk'),
-       (002, 'eggs, cheese'),
-       (003, 'organic cereal'),
-       (004, 'oranges, peaches'),
-       (005, 'ice cream');
-       
+INSERT INTO departments (name)
+VALUES ('Sales'),
+       ('Engineering'),
+       ('Finance'),
+       ('Legal');
+
+INSERT INTO roles (title, department_id, salary)
+VALUES ('Sales Lead', 1, 100000),
+       ('Salesperson', 1, 80000),
+       ('Lead Engineer', 2, 150000),
+       ('Software Engineer', 2, 120000),
+       ('Account Manager', 3, 160000),
+       ('Accountant', 3, 125000),
+       ('Legal Team Lead', 4, 250000),
+       ('Lawyer', 4, 190000);
+
+INSERT INTO employees (first_name, last_name, role_id, manager_id)
+VALUES ('Ryan', 'Osguthorpe', 3, NULL),
+       ('Leon', 'Osguthorpe', 4, 1); 

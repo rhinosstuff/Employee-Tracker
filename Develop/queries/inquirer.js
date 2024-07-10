@@ -1,8 +1,9 @@
 const inquirer = require('inquirer')
-const { Pool } = require('pg')
+const pool = require('../config/connection');
+
 
 // prompts the user through a series of selections and questions
-function init() {
+function prompts() {
   inquirer
   .prompt([
     {
@@ -19,10 +20,12 @@ function init() {
         'Add Department']
     }
   ])
-  .then((data) => {
-    // Provides the directory path and creates .svg file name based off the user input text 
-    const filename = `./examples/${data.text}.svg`
-    writeToFile(filename, data)
+  .then((choice) => {
+    switch (choice.selection) {
+      case 'View All Employees':
+        pool.query('select * from employees', (error, results) => {console.table(results.rows)})
+        break;
+    }
   })
 }
 
@@ -30,4 +33,4 @@ function init() {
 //   return input ? true : 'Please enter a color'
 // }
 
-init()
+module.exports = { prompts }
