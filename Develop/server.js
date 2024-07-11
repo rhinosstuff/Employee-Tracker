@@ -1,3 +1,3 @@
-const { prompts } = require('./queries/inquirer');
+const { displayMainPrompt } = require('./queries/inquirer');
 
-prompts()
+displayMainPrompt()
