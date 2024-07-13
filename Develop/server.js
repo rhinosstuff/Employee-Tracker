@@ -1,3 +1,4 @@
-const { prompts } = require('./queries/inquirer');
+const { mainPrompt } = require('./js')
+const cTable = require('console.table')
 
-prompts()
+mainPrompt()
