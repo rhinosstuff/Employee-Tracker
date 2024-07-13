@@ -8,7 +8,7 @@ const pool = new Pool(
     host: 'localhost',
     database: process.env.DB_NAME,
 },
-  console.log(`Connected to the employee_tracker_db.`)
+  console.log(`\nConnected to the employee_tracker_db.\n`)
 )
 
 module.exports = pool;

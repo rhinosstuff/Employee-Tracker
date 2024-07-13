@@ -1,3 +1,4 @@
-const { displayMainPrompt } = require('./queries/inquirer');
+const { mainPrompt } = require('./js')
+const cTable = require('console.table')
 
-displayMainPrompt()
+mainPrompt()

@@ -1,35 +1,4 @@
-const inquirer = require('inquirer')
 const pool = require('../config/connection')
-const cTable = require('console.table')
-
-const mainPrompt = 
-  [
-    {
-      type: 'list',
-      message: `What would you like to do?`,
-      name: 'selection',
-      choices: [
-        'View All Employees', 
-        'Add Employee', 
-        'Update Employee Role', 
-        'View All Roles', 
-        'Add Role', 
-        'View All Departments',
-        'Add Department']
-    }
-  ]
-
-const addDepartmentPrompt = 
-  [
-    {
-      type: 'input',
-      message: `What is the name of the department?`,
-      name: 'name',
-      validate: function(input) {
-        return input ? true : 'Please enter a name.'
-      }
-    }
-  ]
 
 const viewEmployees = async () => {
   try {
@@ -55,9 +24,9 @@ const viewEmployees = async () => {
       title: row.title,
       department: row.department,
       salary: row.salary,
-      manager: row.manager
+      manager: row.manager.trim() ? row.manager : 'null'
     }))
-
+    
     console.table(rows)
   } catch (error) {
     console.error(error)
@@ -109,4 +78,4 @@ const viewDepartments = async () => {
   }
 }
 
-module.exports = { mainPrompt, viewEmployees, viewRoles, viewDepartments, addDepartmentPrompt }
+module.exports = { viewEmployees, viewRoles, viewDepartments }
