@@ -1,6 +1,8 @@
+// Dependencies
 const { employeeNames, roleTitles, departmentNames } = require('../queries/queryPrompts')
 const inquirer = require('inquirer')
 
+// Displays the main questions the user will choose from
 const mainPrompt = async () => {
   const response = await inquirer.prompt([
     {
@@ -14,15 +16,17 @@ const mainPrompt = async () => {
         'View All Roles', 
         'Add Role', 
         'View All Departments',
-        'Add Department']
+        'Add Department',
+        'Exit']
     }
   ])
   return response
 }
 
+// Retrieves user selection for the addEmployee query
 const addEmployeePrompt = async () => {
-  
   let names = await employeeNames()
+  // Adding 'None' as the first element by using the spread operator
   names = ['None', ...names]
 
   const response = await inquirer.prompt([
@@ -46,18 +50,21 @@ const addEmployeePrompt = async () => {
       type: 'list',
       message: `What is the employee's role?`,
       name: 'title',
+      // Displays current list of all roles for title selection
       choices: roleTitles
     },
     {
       type: 'list',
       message: `Who is the employee's manager?`,
       name: 'manager',
+      // Displays current list of all employees for manager selection
       choices: names
     }
   ])
   return response
 }
 
+// Retrieves user selection for the addRole query
 const addRolePrompt = async () => {
   const response = await inquirer.prompt([
     {
@@ -81,12 +88,14 @@ const addRolePrompt = async () => {
       type: 'list',
       message: `What department does this role belong to?`,
       name: 'department',
+      // Displays current list of all departments for department selection
       choices: departmentNames
     }
   ])
   return response
 }
 
+// Retrieves user selection for the addDepartment query
 const addDepartmentPrompt = async () => {
   const response = await inquirer.prompt([
     {
@@ -101,18 +110,21 @@ const addDepartmentPrompt = async () => {
   return response
 }
 
+// Retrieves user selection for the updateEmployee query
 const updateEmployeePrompt = async () => {
   const response = await inquirer.prompt([
     {
       type: 'list',
       message: `Which employee's role do you want to update?`,
       name: 'name',
+      // Displays current list of all employees for manager selection
       choices: employeeNames
     },
     {
       type: 'list',
       message: `Which role do you want to assign the selected employee?`,
       name: 'title',
+      // Displays current list of all roles for title selection
       choices: roleTitles
     }
   ])
