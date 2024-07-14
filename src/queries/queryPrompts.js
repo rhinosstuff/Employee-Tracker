@@ -4,7 +4,6 @@ const employeeNames = async () => {
   try {
     const result = await pool.query('SELECT * FROM employees')
     const names = result.rows.map(({ first_name, last_name }) => `${first_name} ${last_name}`)
-    names.unshift('None')
     return names
   } catch (error) {
     console.error('Error retrieving departments:', error)

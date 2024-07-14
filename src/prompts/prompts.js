@@ -1,4 +1,4 @@
-const { employeeNames, roleTitles, departmentNames } = require('./queryPrompts')
+const { employeeNames, roleTitles, departmentNames } = require('../queries/queryPrompts')
 const inquirer = require('inquirer')
 
 const mainPrompt = async () => {
@@ -21,6 +21,10 @@ const mainPrompt = async () => {
 }
 
 const addEmployeePrompt = async () => {
+  
+  let names = await employeeNames()
+  names = ['None', ...names]
+
   const response = await inquirer.prompt([
     {
       type: 'input',
@@ -41,14 +45,14 @@ const addEmployeePrompt = async () => {
     {
       type: 'list',
       message: `What is the employee's role?`,
-      name: 'role',
+      name: 'title',
       choices: roleTitles
     },
     {
       type: 'list',
       message: `Who is the employee's manager?`,
       name: 'manager',
-      choices: employeeNames
+      choices: names
     }
   ])
   return response
@@ -97,4 +101,22 @@ const addDepartmentPrompt = async () => {
   return response
 }
 
-module.exports = { mainPrompt, addEmployeePrompt, addRolePrompt, addDepartmentPrompt }
+const updateEmployeePrompt = async () => {
+  const response = await inquirer.prompt([
+    {
+      type: 'list',
+      message: `Which employee's role do you want to update?`,
+      name: 'name',
+      choices: employeeNames
+    },
+    {
+      type: 'list',
+      message: `Which role do you want to assign the selected employee?`,
+      name: 'title',
+      choices: roleTitles
+    }
+  ])
+  return response
+}
+
+module.exports = { mainPrompt, addEmployeePrompt, addRolePrompt, addDepartmentPrompt, updateEmployeePrompt }
