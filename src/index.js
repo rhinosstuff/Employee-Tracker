@@ -1,5 +1,5 @@
-const { mainPrompt } = require('./prompts')
-const { viewEmployees, viewRoles, viewDepartments, addEmployee, addRole, addDepartment } = require('./queries')
+const { mainPrompt } = require('./prompts/prompts')
+const { viewEmployees, viewRoles, viewDepartments, addEmployee, addRole, addDepartment, updateEmployee } = require('./queries/queries')
 
 const init = async () => {
   const response = await mainPrompt()
@@ -27,10 +27,13 @@ const main = async (response) => {
         break
       case 'Add Department':
         await addDepartment()
-        break 
+        break
+      case 'Update Employee Role':
+        await updateEmployee()
+        break
     } 
   } catch (error) {
-    console.error('Error in prompts:', error);
+    console.error('Error in prompts:', error)
   } finally {
     init()
   }
