@@ -1,5 +1,7 @@
+// Dependencies
 const pool = require('../config/connection')
 
+// Retrieves employee first and last names and returns them as a single string 'first_name last_name'
 const employeeNames = async () => {
   try {
     const result = await pool.query('SELECT * FROM employees')
@@ -11,6 +13,7 @@ const employeeNames = async () => {
   }
 }
 
+// Retrieves role title
 const roleTitles = async () => {
   try {
     const result = await pool.query('SELECT * FROM roles')
@@ -22,6 +25,7 @@ const roleTitles = async () => {
   }
 }
 
+// Retrieves department name
 const departmentNames = async () => {
   try {
     const result = await pool.query('SELECT * FROM departments')
