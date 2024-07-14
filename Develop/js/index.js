@@ -1,33 +1,15 @@
-const inquirer = require('inquirer')
-const { viewEmployees, viewRoles, viewDepartments } = require('./queriesView')
-const { addEmployee, addRole, addDepartment } = require('./queriesAdd')
+const { mainPrompt } = require('./prompts')
+const { viewEmployees, viewRoles, viewDepartments, addEmployee, addRole, addDepartment } = require('./queries')
 
-function mainPrompt() {
-  inquirer
-  .prompt([
-    {
-      type: 'list',
-      message: `What would you like to do?`,
-      name: 'selection',
-      choices: [
-        'View All Employees', 
-        'Add Employee', 
-        'Update Employee Role', 
-        'View All Roles', 
-        'Add Role', 
-        'View All Departments',
-        'Add Department']
-    }
-  ])
-  .then((choice) => {
-    prompts(choice.selection)
-  })
+const init = async () => {
+  const response = await mainPrompt()
+  await main(response)
 }
 
 // prompts the user through a series of selections and questions
-async function prompts(choice) {
+const main = async (response) => {
   try {
-    switch (choice) {
+    switch (response.selection) {
       case 'View All Employees':
         await viewEmployees()
         break
@@ -50,8 +32,8 @@ async function prompts(choice) {
   } catch (error) {
     console.error('Error in prompts:', error);
   } finally {
-    mainPrompt()
+    init()
   }
 }
 
-module.exports = { mainPrompt }
+module.exports = { init }
