@@ -24,8 +24,11 @@
   ```
   node server.js
   ```
-  You will be prompted with a series of questions, make a selection and follow the prompts. The application will run in a loop until `Exit` is chosen from the main prompt.
+  You will be prompted with a series of questions, make a selection and follow the prompts.  
+  The application will run in a loop until `Exit` is chosen from the main prompt.
   
+  Image example of what to expect.\
+  <img src="./images/employee_tracker.png" width="800">
 
   ## License
   This project is licensed under the **[MIT](./LICENSE)** license.
